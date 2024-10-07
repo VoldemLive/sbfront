@@ -32,6 +32,7 @@ class Api {
           (error.response.status === 401 ||
             error.response.data.error === "Unauthorized")
         ) {
+          console.log("unauthorized and removing user data")
           this.removeUserData()
         }
         return Promise.reject(error)
@@ -77,6 +78,7 @@ class Api {
       const response = await this.apiClient.post("/users", {
         user: { email, password },
       })
+      console.log(response)
       this.storeUserData(response.data)
       return { data: response.data, status: response.status }
     } catch (error) {
@@ -98,6 +100,7 @@ class Api {
   }
 
   async logout() {
+    console.log("logout")
     this.removeUserData()
     try {
       const response = await this.apiClient.delete("/users/sign_out")

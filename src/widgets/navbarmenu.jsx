@@ -36,16 +36,10 @@ export default function Navbarmenu() {
         )}
         <Navbar.Collapse>
           <Navbar.Link>
-            <Link to="/">Home</Link>
-          </Navbar.Link>
-          <Navbar.Link>
             <Link to="/dreams">Dreams</Link>
           </Navbar.Link>
           <Navbar.Link>
             <Link to="/create-dream">New Dream</Link>
-          </Navbar.Link>
-          <Navbar.Link>
-            <Link to="/dashboard">Dashboard</Link>
           </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>

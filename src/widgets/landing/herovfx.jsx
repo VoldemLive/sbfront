@@ -46,9 +46,9 @@ export default function HeroVFX() {
                 <animate
                   attributeName="d"
                   values="
-                  M-10,0 L110,0 L110,8 Q50,8 -10,8 Z;
-                  M-10,0 L110,0 L110,8 Q50,8 -10,8 Z;
-                  M-10,0 L110,0 L110,8 Q50,8 -10,8 Z
+                  M-10,0 L110,0 L110,9.9 Q50,9.9 -10,9.9 Z;
+                  M-10,0 L110,0 L110,9.9 Q50,9.9 -10,9.9 Z;
+                  M-10,0 L110,0 L110,9.9 Q50,9.9 -10,9.9 Z
                 "
                   dur="10s"
                   repeatCount="indefinite"
@@ -56,15 +56,15 @@ export default function HeroVFX() {
               </path>
 
               <path
-                d="M-10,101 L110,101 L110,98 Q50,98 -10,98 Z"
+                d="M-10,101 L110,101 L110,91 Q50,91 -10,91 Z"
                 fill="url(#gradient)"
               >
                 <animate
                   attributeName="d"
                   values="
-                  M-10,101 L110,101 L110,98 Q50,98 -10,98 Z;
-                  M-10,101 L110,101 L110,98 Q50,98 -10,98 Z;
-                  M-10,101 L110,101 L110,98 Q50,98 -10,98 Z
+                  M-10,101 L110,101 L110,91 Q50,91 -10,91 Z;
+                  M-10,101 L110,101 L110,91 Q50,91 -10,91 Z;
+                  M-10,101 L110,101 L110,91 Q50,91 -10,91 Z
                 "
                   dur="8s"
                   repeatCount="indefinite"
