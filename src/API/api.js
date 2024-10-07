@@ -1,11 +1,8 @@
 import axios from "axios"
-import dotenv from "dotenv"
-
-dotenv.config()
 
 class Api {
   constructor() {
-    this.baseUrl = process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"
+    this.baseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000"
     this.apiClient = axios.create({
       baseURL: this.baseUrl,
       headers: {
