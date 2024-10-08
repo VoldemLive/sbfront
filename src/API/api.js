@@ -197,17 +197,14 @@ class Api {
     }
   }
 
-  // // GET /dreams/:dream_id/interpretations
-  // async getInterpretations() {
-  //   try {
-  //     const response = await this.apiClient.get(
-  //       `/api/v1/dreams/${dreamId}/interpretations`
-  //     )
-  //     return { data: response.data, status: response.status }
-  //   } catch (error) {
-  //     return this.handleError(error)
-  //   }
-  // }
+  async restoreDream(id) {
+    try {
+      const response = await this.apiClient.post(`/api/v1/dreams/${id}/restore`)
+      return { data: response.data, status: response.status }
+    } catch (error) {
+      return this.handleError(error)
+    }
+  }
 
   // GET /dreams/:dream_id/interpretations/:id
   async getInterpretation(dreamId) {

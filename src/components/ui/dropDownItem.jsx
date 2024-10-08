@@ -2,9 +2,9 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { Dropdown } from "flowbite-react"
 
-const DropDownItem = ({ title, path }) => {
+const DropDownItem = ({ icon, title, path }) => {
   return (
-    <Dropdown.Item>
+    <Dropdown.Item icon={icon}>
       <Link to={path} className="w-full text-left">
         {title}
       </Link>

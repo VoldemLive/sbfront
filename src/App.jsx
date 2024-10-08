@@ -10,7 +10,7 @@ import Dreams from "./pages/dreams"
 import Dashboard from "./pages/dashboard"
 import CreateDream from "./pages/createDream"
 import DreamPage from "./pages/dream"
-import DreamListDeleted from "./widgets/dreamListDeleted"
+import DeletedDreams from "./pages/deletedDreams"
 import LandingPage from "./pages/landing"
 
 function App() {
@@ -34,11 +34,11 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/dreams" element={<Dreams />} />
+            <Route path="/deleted-dreams" element={<DeletedDreams />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/create-dream" element={<CreateDream />} />
             <Route path="/edit-dream/:id" element={<CreateDream />} />
             <Route path="/dreams/:id" element={<DreamPage />} />
-            <Route path="/deleted-dreams" element={<DreamListDeleted />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         ) : (

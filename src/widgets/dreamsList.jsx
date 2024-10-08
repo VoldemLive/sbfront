@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useCallback } from "react"
+import React, { useEffect, useState, useCallback, useMemo } from "react"
 import Api from "../API/api"
 import { useNavigate } from "react-router-dom"
 import debounce from "lodash.debounce"
 import ModalAlert from "../components/modalAlert"
 import DreamListItem from "../components/dreamListItem"
 import DreamListControl from "../components/dreamListControl"
+import EmptyListItem from "../components/emptyListItem"
 
 const DreamsList = () => {
   const [dreams, setDreams] = useState([])
@@ -14,37 +15,38 @@ const DreamsList = () => {
   const [openFunctionModal, setOpenFunctionModal] = useState(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const fetchDreams = async () => {
-      const { data } = await Api.getDreams(false)
-      if (data) {
-        setDreams(data.dreams)
-        setFilteredDreams(data.dreams)
-      }
+  const fetchDreams = useCallback(async () => {
+    const { data } = await Api.getDreams(false)
+    if (data) {
+      setDreams(data.dreams)
+      setFilteredDreams(data.dreams)
     }
-
-    fetchDreams()
   }, [])
 
-  const debouncedSearch = useCallback(
-    debounce((searchValue) => {
-      if (searchValue.length < 3) {
-        setFilteredDreams(dreams)
-        return
-      }
-      const filtered = dreams.filter((dream) =>
-        dream.description.toLowerCase().includes(searchValue.toLowerCase())
-      )
-      setFilteredDreams(filtered)
-    }, 300),
-    [dreams]
+  useEffect(() => {
+    fetchDreams()
+  }, [fetchDreams])
+
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((searchValue, dreamsToSearch) => {
+        if (searchValue.length < 3) {
+          setFilteredDreams(dreamsToSearch)
+          return
+        }
+        const filtered = dreamsToSearch.filter((dream) =>
+          dream.description.toLowerCase().includes(searchValue.toLowerCase())
+        )
+        setFilteredDreams(filtered)
+      }, 300),
+    []
   )
 
   useEffect(() => {
-    debouncedSearch(searchTerm)
-  }, [searchTerm, debouncedSearch])
+    debouncedSearch(searchTerm, dreams)
+  }, [searchTerm, dreams, debouncedSearch])
 
-  const handleDelete = async () => {
+  const handleDelete = useCallback(async () => {
     if (dreamToDelete) {
       const { data } = await Api.deleteDream(dreamToDelete)
       if (data) {
@@ -57,27 +59,32 @@ const DreamsList = () => {
       setOpenFunctionModal(false)
       setDreamToDelete(null)
     }
-  }
+  }, [dreamToDelete, dreams])
 
-  const handleEditClick = (dream) => {
-    navigate(`/edit-dream/${dream.id}`)
-  }
+  const handleEditClick = useCallback(
+    (dream) => {
+      navigate(`/edit-dream/${dream.id}`)
+    },
+    [navigate]
+  )
 
-  const handleShowDeleted = () => {
-    console.log("Show deleted dreams")
-  }
+  const handleShowDeleted = useCallback(() => {
+    navigate("/deleted-dreams")
+  }, [navigate])
 
   return (
-    <>
-      <div className="flex w-full flex-col">
-        <DreamListControl
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          navigate={navigate}
-          onShowDeleted={handleShowDeleted}
-        />
-        <div className="grid grid-cols-1 gap-4">
-          {filteredDreams?.map((dream) => (
+    <div className="flex w-full flex-col">
+      <DreamListControl
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        navigate={navigate}
+        onShowDeleted={handleShowDeleted}
+      />
+      <div className="grid grid-cols-1 gap-4">
+        {filteredDreams.length === 0 ? (
+          <EmptyListItem />
+        ) : (
+          filteredDreams.map((dream) => (
             <DreamListItem
               key={dream.id}
               dream={dream}
@@ -88,20 +95,20 @@ const DreamsList = () => {
                 setOpenFunctionModal(true)
               }}
             />
-          ))}
-        </div>
-
-        <ModalAlert
-          isOpen={openFunctionModal}
-          onClose={() => setOpenFunctionModal(false)}
-          onConfirm={handleDelete}
-          message="Are you sure you want to delete this dream?"
-          title="Delete Dream"
-          color="failure"
-        />
+          ))
+        )}
       </div>
-    </>
+
+      <ModalAlert
+        isOpen={openFunctionModal}
+        onClose={() => setOpenFunctionModal(false)}
+        onConfirm={handleDelete}
+        message="Are you sure you want to delete this dream?"
+        title="Delete Dream"
+        color="failure"
+      />
+    </div>
   )
 }
 
-export default DreamsList
+export default React.memo(DreamsList)

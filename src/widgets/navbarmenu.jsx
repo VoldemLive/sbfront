@@ -26,7 +26,6 @@ export default function Navbarmenu() {
         {user ? (
           <div className="relative gap-2 md:order-2 flex flex-row">
             <UserDropdown />
-            <Navbar.Toggle />
           </div>
         ) : (
           <div className="relative gap-2 md:order-2 flex flex-row">
@@ -34,14 +33,6 @@ export default function Navbarmenu() {
             <Button>Sign up</Button>
           </div>
         )}
-        <Navbar.Collapse>
-          <Navbar.Link>
-            <Link to="/dreams">Dreams</Link>
-          </Navbar.Link>
-          <Navbar.Link>
-            <Link to="/create-dream">New Dream</Link>
-          </Navbar.Link>
-        </Navbar.Collapse>
       </Navbar>
     </div>
   )

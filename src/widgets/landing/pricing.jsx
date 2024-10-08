@@ -13,7 +13,7 @@ const plans = [
   },
   {
     title: "Dreamer",
-    price: "$9.99/month",
+    price: "$9.99/mon",
     features: [
       "Unlimited interpretations",
       "Advanced dream journaling",
@@ -23,7 +23,7 @@ const plans = [
   },
   {
     title: "Visionary",
-    price: "$19.99/month",
+    price: "$19.99/mon",
     features: [
       "Everything in Dreamer",
       "Personalized insights",

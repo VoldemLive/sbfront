@@ -4,6 +4,7 @@ import api from "../API/api"
 import { useNavigate, useParams } from "react-router-dom"
 import { useToast } from "../contexts/ToastContext"
 import { Datepicker } from "flowbite-react"
+
 const DreamForm = () => {
   const { addToast } = useToast()
   const navigate = useNavigate()
@@ -46,25 +47,38 @@ const DreamForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (description.length < 500) {
+      addToast(
+        "Dream description must be at least 500 characters long",
+        "error"
+      )
+      return
+    }
     const dreamData = { datedream, description, quality, hours, lucid }
 
     try {
-      const result = id
-        ? await api.updateDream(id, dreamData)
-        : await api.createDream(dreamData)
+      let result
+      if (id) {
+        result = await api.updateDream(id, dreamData)
+      } else {
+        result = await api.createDream(dreamData)
+      }
+
       if (result.status === 201 || result.status === 200) {
-        console.log("Dream created:", result.data)
+        console.log("Dream saved:", result.data)
         resetForm()
-        addToast({
-          message: "Dream created successfully",
-          type: "success",
-        })
-        navigate("/dreams")
+        addToast("Dream saved successfully", "success")
+
+        // Navigate to the newly created or updated dream
+        const dreamId = id || result.data.id // Use existing id for updates, or new id for creations
+        navigate(`/dreams/${dreamId}`)
       } else {
         console.error("Error saving dream:", result.error)
+        addToast("Error saving dream", "error")
       }
     } catch (error) {
       console.error("Error saving dream:", error)
+      addToast("Error saving dream", "error")
     }
   }
 
@@ -75,7 +89,9 @@ const DreamForm = () => {
         <Datepicker
           id="datedream"
           value={datedream}
-          onChange={(date) => setDatedream(date)}
+          onSelectedDateChanged={(date) => {
+            setDatedream(date.toISOString().split("T")[0])
+          }}
           required
         />
       </div>
@@ -83,17 +99,21 @@ const DreamForm = () => {
         <Label
           htmlFor="description"
           className="font-semibold"
-          value="Description"
+          value="Description (minimum 500 characters)"
         />
         <textarea
           id="description"
           rows="4"
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Write your thoughts here..."
+          placeholder="Write your thoughts here... (minimum 500 characters)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
+          minLength={500}
         />
+        <p className="mt-1 text-sm text-gray-500">
+          {description.length}/500 characters
+        </p>
       </div>
       <div>
         <label className="inline-flex items-center cursor-pointer">

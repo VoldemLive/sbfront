@@ -7,7 +7,7 @@ import { Button } from "flowbite-react"
 export default function Navbarmenu() {
   return (
     <div className="h-[78px] top-0 w-full z-50">
-      <Navbar fluid className="bg-transparent">
+      <Navbar fluid className="bg-transparent dark:bg-transparent">
         <Navbar.Brand href="/">
           <Logo color="white" />
         </Navbar.Brand>
