@@ -8,6 +8,7 @@ import DreamListDeletedControl from "../components/dreamListDeletedControl"
 import { useToast } from "../contexts/ToastContext"
 import EmptyListItem from "../components/emptyListItem"
 import EmptyDeletedListItem from "../components/emptyDeletedListItem"
+import Loader from "../components/loader"
 
 const DreamsList = () => {
   const { addToast } = useToast()
@@ -17,14 +18,17 @@ const DreamsList = () => {
   const [dreamToDelete, setDreamToDelete] = useState(null)
   const [openFunctionModal, setOpenFunctionModal] = useState(false)
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchDreams = async () => {
+      setIsLoading(true)
       const { data } = await Api.getDreams(true)
       if (data) {
         setDreams(data.dreams)
         setFilteredDreams(data.dreams)
       }
+      setIsLoading(false)
     }
 
     fetchDreams()
@@ -93,7 +97,9 @@ const DreamsList = () => {
           onShowDreams={handleShowDreams}
         />
         <div className="grid grid-cols-1 gap-4">
-          {filteredDreams.length === 0 ? (
+          {isLoading ? (
+            <Loader />
+          ) : filteredDreams.length === 0 ? (
             <EmptyDeletedListItem />
           ) : (
             filteredDreams.map((dream) => (

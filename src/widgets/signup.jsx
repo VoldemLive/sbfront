@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Card, TextInput, Label, Button } from "flowbite-react"
 import useUser from "../hooks/useUser"
 import Api from "../API/api"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { useToast } from "../contexts/ToastContext"
 
 export default function SignupWidget() {
@@ -54,73 +54,69 @@ export default function SignupWidget() {
   }
 
   return (
-    <Card className="max-w-sm mx-auto">
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-        Sign Up
-      </h5>
-      <form className="flex flex-col gap-4" onSubmit={handleSignup}>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="email" value="Your email" />
-          </div>
-          <TextInput
-            id="email"
-            type="email"
-            placeholder="some@email.com"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="password" value="Your password" />
-          </div>
-          <TextInput
-            id="password"
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="confirm-password" value="Confirm password" />
-          </div>
-          <TextInput
-            id="confirm-password"
-            type="password"
-            required
-            value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-          />
-        </div>
-        <div className="flex items-start mb-6">
-          <div className="flex items-center h-5">
-            <input
-              id="terms"
-              type="checkbox"
-              value=""
-              className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+    <Card className="min-w-[320px] mx-auto bg-gradient-to-b from-purple-600 to-indigo-600 border-none">
+      <h5 className="text-2xl font-bold tracking-tight text-white">Sign Up</h5>
+      <form className="flex flex-col gap-2" onSubmit={handleSignup}>
+        <div className="flex flex-col gap-2">
+          <div>
+            <div className="mb-2 block">
+              <Label
+                className="text-white"
+                htmlFor="email"
+                value="Your email"
+              />
+            </div>
+            <TextInput
+              id="email"
+              type="email"
+              placeholder="some@email.com"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <Label
-            htmlFor="terms"
-            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            I agree with the{" "}
-            <a
-              href="#"
-              className="text-blue-600 hover:underline dark:text-blue-500"
-            >
-              terms and conditions
-            </a>
-          </Label>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                className="text-white"
+                htmlFor="password"
+                value="Your password"
+              />
+            </div>
+            <TextInput
+              id="password"
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                className="text-white"
+                htmlFor="confirm-password"
+                value="Confirm password"
+              />
+            </div>
+            <TextInput
+              id="confirm-password"
+              type="password"
+              required
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+            />
+          </div>
         </div>
-
-        <Button type="submit">Sign Up</Button>
+        <Button className="w-full mt-4" color="dark" type="submit">
+          Sign Up
+        </Button>
+        <p className="text-center text-white mt-4 text-sm">
+          Already have an account?{" "}
+          <Link to="/signin" className="text-blue-300 underline">
+            Sign in here.
+          </Link>
+        </p>
       </form>
     </Card>
   )

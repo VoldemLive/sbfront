@@ -6,8 +6,10 @@ import ModalAlert from "../components/modalAlert"
 import DreamListItem from "../components/dreamListItem"
 import DreamListControl from "../components/dreamListControl"
 import EmptyListItem from "../components/emptyListItem"
+import Loader from "../components/loader"
 
 const DreamsList = () => {
+  const [isLoading, setIsLoading] = useState(true)
   const [dreams, setDreams] = useState([])
   const [filteredDreams, setFilteredDreams] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
@@ -16,11 +18,13 @@ const DreamsList = () => {
   const navigate = useNavigate()
 
   const fetchDreams = useCallback(async () => {
+    setIsLoading(true)
     const { data } = await Api.getDreams(false)
     if (data) {
       setDreams(data.dreams)
       setFilteredDreams(data.dreams)
     }
+    setIsLoading(false)
   }, [])
 
   useEffect(() => {
@@ -81,7 +85,9 @@ const DreamsList = () => {
         onShowDeleted={handleShowDeleted}
       />
       <div className="grid grid-cols-1 gap-4">
-        {filteredDreams.length === 0 ? (
+        {isLoading ? (
+          <Loader />
+        ) : filteredDreams.length === 0 ? (
           <EmptyListItem />
         ) : (
           filteredDreams.map((dream) => (

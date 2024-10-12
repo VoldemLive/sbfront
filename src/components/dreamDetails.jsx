@@ -5,25 +5,33 @@ import { Card, Rating } from "flowbite-react"
 import api from "../API/api"
 import UiDreamBadge from "./ui/uiDreamBadge"
 import UiDateTitle from "./ui/uiDateTitle"
+import Loader from "../components/loader"
 
 const DreamDetails = () => {
   const { addToast } = useToast()
   const [dream, setDream] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
   const { pathname } = useLocation()
   const dreamId = pathname.split("/").pop()
   const [isExpanded, setIsExpanded] = useState(false)
 
   useEffect(() => {
     const fetchDream = async () => {
+      setIsLoading(true)
       const { data, error } = await api.getDream(dreamId)
       if (error) {
         addToast("No dream found.", { type: "error" })
       } else {
         setDream(data.dreams)
       }
+      setIsLoading(false)
     }
     fetchDream()
   }, [dreamId, addToast])
+
+  if (isLoading) {
+    return <Loader />
+  }
 
   if (!dream) {
     return <div>No dream found.</div>

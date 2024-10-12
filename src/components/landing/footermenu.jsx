@@ -1,6 +1,7 @@
 import React from "react"
 import { Footer } from "flowbite-react"
 import Logo from "../../components/logo"
+import { Link } from "react-router-dom"
 export default function Footermenu() {
   return (
     <Footer
@@ -9,7 +10,9 @@ export default function Footermenu() {
     >
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
-          <Logo color="white" />
+          <Link to="/">
+            <Logo color="white" />
+          </Link>
           <Footer.LinkGroup className="text-white">
             <Footer.Link href="#">About</Footer.Link>
             <Footer.Link href="#">Privacy Policy</Footer.Link>

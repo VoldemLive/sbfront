@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import api from "../API/api"
 import { useToast } from "../contexts/ToastContext"
 import { Button, Alert, Card, Tabs } from "flowbite-react"
+import Loader from "./loader"
 
 const InterpretationView = () => {
   const [interpretation, setInterpretation] = useState(null)
@@ -55,7 +56,7 @@ const InterpretationView = () => {
   }
 
   if (loading) {
-    return <div>Loading...</div>
+    return <Loader />
   }
 
   return (
@@ -92,9 +93,9 @@ const InterpretationView = () => {
       ) : (
         <div>
           <div className="my-4">
-            <h2 className="text-slate-600 dark:text-white text-3xl font-bold mb-4">
+            <h3 className="text-slate-600 ml-4 dark:text-white text-3xl font-bold mb-4">
               Interpretation
-            </h2>
+            </h3>
           </div>
           <Card className="my-3">
             <h5 className="text-2xl font-bold tracking-tight text-slate-600 dark:text-white">

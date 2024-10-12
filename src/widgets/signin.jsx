@@ -4,6 +4,7 @@ import useUser from "../hooks/useUser"
 import Api from "../API/api"
 import { useNavigate } from "react-router-dom"
 import { useToast } from "../contexts/ToastContext"
+import { Link } from "react-router-dom"
 
 export default function SigninWidget() {
   const { addToast } = useToast()
@@ -49,37 +50,53 @@ export default function SigninWidget() {
   }
 
   return (
-    <Card className="max-w-sm mx-auto">
-      <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-        Sign In
-      </h5>
-      <form className="flex flex-col gap-4" onSubmit={handleSignin}>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="email" value="Your email" />
+    <Card className="min-w-[320px] mx-auto bg-gradient-to-b from-purple-600 to-indigo-600 border-none">
+      <h5 className="text-2xl font-bold tracking-tight text-white">Sign In</h5>
+      <form className="flex flex-col gap-2" onSubmit={handleSignin}>
+        <div className="flex flex-col gap-2">
+          <div>
+            <div className="mb-2 block">
+              <Label
+                className="text-white"
+                htmlFor="email"
+                value="Your email"
+              />
+            </div>
+            <TextInput
+              id="email"
+              type="email"
+              placeholder="some@email.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
-          <TextInput
-            id="email"
-            type="email"
-            placeholder="name@flowbite.com"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="password" value="Your password" />
+          <div>
+            <div className="mb-2 block">
+              <Label
+                className="text-white"
+                htmlFor="password"
+                value="Your password"
+              />
+            </div>
+            <TextInput
+              id="password"
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          <TextInput
-            id="password"
-            type="password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
         </div>
-        <Button type="submit">Sign In</Button>
+        <Button className="w-full mt-4" color="dark" type="submit">
+          Sign In
+        </Button>
+        <p className="text-center text-white mt-4 text-sm">
+          Don't have an account?{" "}
+          <Link to="/signup" className="text-blue-300 underline">
+            Create one here.
+          </Link>
+        </p>
       </form>
     </Card>
   )

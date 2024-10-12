@@ -32,7 +32,7 @@ function App() {
       <Routes location={location}>
         {user ? (
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+            <Route index element={<Dreams />} />
             <Route path="/dreams" element={<Dreams />} />
             <Route path="/deleted-dreams" element={<DeletedDreams />} />
             <Route path="/dashboard" element={<Dashboard />} />

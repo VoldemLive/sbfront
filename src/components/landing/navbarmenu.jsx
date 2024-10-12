@@ -8,8 +8,10 @@ export default function Navbarmenu() {
   return (
     <div className="h-[78px] top-0 w-full z-50">
       <Navbar fluid className="bg-transparent dark:bg-transparent">
-        <Navbar.Brand href="/">
-          <Logo color="white" />
+        <Navbar.Brand>
+          <Link to="/">
+            <Logo color="white" />
+          </Link>
         </Navbar.Brand>
 
         <div className="relative gap-2 md:order-2 flex flex-row">

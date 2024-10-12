@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Button } from "flowbite-react"
+
 import Hero from "./hero"
 export default function HeroVFX() {
   const [isClient, setIsClient] = useState(false)
@@ -15,7 +15,7 @@ export default function HeroVFX() {
           <svg
             className="absolute inset-0 w-full h-full"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 100"
+            viewBox="0 0 160 90"
             preserveAspectRatio="none"
           >
             <defs>
@@ -40,15 +40,15 @@ export default function HeroVFX() {
 
             <g filter="url(#goo)">
               <path
-                d="M-10,0 L110,0 L110,8 Q50,8 -10,8 Z"
+                d="M-16,0 L176,0 L176,8.7 Q80,8.7 -16,8.7 Z"
                 fill="url(#gradient)"
               >
                 <animate
                   attributeName="d"
                   values="
-                  M-10,0 L110,0 L110,9.9 Q50,9.9 -10,9.9 Z;
-                  M-10,0 L110,0 L110,9.9 Q50,9.9 -10,9.9 Z;
-                  M-10,0 L110,0 L110,9.9 Q50,9.9 -10,9.9 Z
+                  M-16,0 L176,0 L176,8.7 Q80,8.7 -16,8.7 Z;
+                  M-16,0 L176,0 L176,8.7 Q80,8.7 -16,8.7 Z;
+                  M-16,0 L176,0 L176,8.7 Q80,8.7 -16,8.7 Z
                 "
                   dur="10s"
                   repeatCount="indefinite"
@@ -56,43 +56,51 @@ export default function HeroVFX() {
               </path>
 
               <path
-                d="M-10,101 L110,101 L110,91 Q50,91 -10,91 Z"
+                d="M-16,90 L176,90 L176,85 Q80,85 -16,85 Z"
                 fill="url(#gradient)"
               >
                 <animate
                   attributeName="d"
                   values="
-                  M-10,101 L110,101 L110,91 Q50,91 -10,91 Z;
-                  M-10,101 L110,101 L110,91 Q50,91 -10,91 Z;
-                  M-10,101 L110,101 L110,91 Q50,91 -10,91 Z
+                  M-16,90 L176,90 L176,85 Q80,85 -16,85 Z;
+                  M-16,90 L176,90 L176,85 Q80,85 -16,85 Z;
+                  M-16,90 L176,90 L176,85 Q80,85 -16,85 Z
                 "
                   dur="8s"
                   repeatCount="indefinite"
                 />
               </path>
 
-              {[...Array(8)].map((_, i) => (
-                <circle key={i} r="6" fill="url(#gradient)">
+              {[...Array(15)].map((_, i) => (
+                <circle
+                  key={i}
+                  r={`${Math.random() * (10 - 5) + 5}`}
+                  fill="url(#gradient)"
+                >
                   <animate
                     attributeName="cx"
-                    values="50;45;55;50"
-                    dur={`${10 + i * 2}s`}
+                    values="80;76;84;80"
+                    dur={`${15 + i * 2}s`}
                     repeatCount="indefinite"
+                    calcMode="spline"
+                    keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"
                   />
                   <animate
                     attributeName="cy"
-                    values={i % 2 === 0 ? "0;100;0" : "100;0;100"}
-                    dur={`${20 + i * 3}s`}
+                    values={i % 2 === 0 ? "-20;120;-20" : "120;-20;120"}
+                    dur={`${45 + i * 10}s`}
                     repeatCount="indefinite"
+                    calcMode="spline"
+                    keySplines="0.42 0 0.58 1; 0.42 0 0.58 1"
                   />
-                  <animate
+                  {/* <animate
                     attributeName="r"
-                    values="6;8;6"
+                    values="5.4;7.2;5.4"
                     dur={`${5 + i}s`}
                     repeatCount="indefinite"
                     calcMode="spline"
                     keySplines="0.5 0 0.5 1; 0.5 0 0.5 1"
-                  />
+                  /> */}
                 </circle>
               ))}
             </g>

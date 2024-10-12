@@ -5,7 +5,7 @@ const features = [
   {
     icon: (
       <svg
-        className="w-6 h-6 text-gray-800 dark:text-white"
+        className="w-10 h-10 dark:text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -26,7 +26,7 @@ const features = [
   {
     icon: (
       <svg
-        className="w-6 h-6 text-gray-800 dark:text-white"
+        className="w-10 h-10  dark:text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -43,7 +43,7 @@ const features = [
   {
     icon: (
       <svg
-        className="w-6 h-6 text-gray-800 dark:text-white"
+        className="w-10 h-10  dark:text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -64,7 +64,7 @@ const features = [
   {
     icon: (
       <svg
-        className="w-6 h-6 text-gray-800 dark:text-white"
+        className="w-10 h-10 dark:text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -86,20 +86,34 @@ const features = [
 
 export default function KeyFeatures() {
   return (
-    <section className="mb-20">
-      <h3 className="text-3xl font-semibold text-center mb-10">Key Features</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {features.map((feature, index) => (
-          <Card key={index} className="bg-purple-800 border-none">
-            <div className="text-center">
-              {feature.icon}
-              <h5 className="text-2xl font-bold tracking-tight text-white">
-                {feature.title}
-              </h5>
-            </div>
-            <p className="font-normal text-gray-300">{feature.description}</p>
-          </Card>
-        ))}
+    <section className="min-h-screen">
+      <div className="flex flex-col mx-auto max-w-screen-xl items-center justify-center h-full">
+        <h3 className="text-4xl font-semibold text-center my-10">
+          Key Features
+        </h3>
+        <div className="max-w-screen-xl mx-auto px-4 pb-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {features.map((feature, index) => (
+            <Card
+              key={index}
+              className="group p-0 bg-purple-800 relative overflow-hidden dark:bg-purple-800 border-none transition-all duration-[300ms] hover:shadow-2xl hover:bg-purple-500/20"
+            >
+              <div className="w-full h-full ">
+                <div className="text-center">
+                  {feature.icon}
+                  <h5 className="text-3xl font-bold tracking-tight text-white">
+                    {feature.title}
+                  </h5>
+                  <p className="font-normal text-xl py-4 text-gray-300">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+              <div className="absolute top-10 left-5 group-hover:left-10 text-white/0 scale-[10] transition-all duration-[700ms] group-hover:text-white/10">
+                {feature.icon}
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   )

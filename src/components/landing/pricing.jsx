@@ -35,7 +35,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section className="mb-20">
+    <section className="">
       <h3 className="text-3xl font-semibold text-center mb-10">
         Start Your Dream Journey
       </h3>
