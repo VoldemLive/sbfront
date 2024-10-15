@@ -5,7 +5,7 @@ const features = [
   {
     icon: (
       <svg
-        className="w-10 h-10 dark:text-white"
+        className="w-10 h-10"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -26,7 +26,7 @@ const features = [
   {
     icon: (
       <svg
-        className="w-10 h-10  dark:text-white"
+        className="w-10 h-10"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -43,7 +43,7 @@ const features = [
   {
     icon: (
       <svg
-        className="w-10 h-10  dark:text-white"
+        className="w-10 h-10"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -64,7 +64,7 @@ const features = [
   {
     icon: (
       <svg
-        className="w-10 h-10 dark:text-white"
+        className="w-10 h-10"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -108,7 +108,7 @@ export default function KeyFeatures() {
                   </p>
                 </div>
               </div>
-              <div className="absolute top-10 left-5 group-hover:left-10 text-white/0 scale-[10] transition-all duration-[700ms] group-hover:text-white/10">
+              <div className="absolute text-transparent top-10 left-5 group-hover:text-white/10 group-hover:left-10 scale-[10] transition-all duration-[700ms]">
                 {feature.icon}
               </div>
             </Card>

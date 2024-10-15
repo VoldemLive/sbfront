@@ -26,13 +26,13 @@ export default function HeroVFX() {
               <filter id="goo">
                 <feGaussianBlur
                   in="SourceGraphic"
-                  stdDeviation="2"
+                  stdDeviation="1.2" // Reduced the blur for a sharper effect
                   result="blur"
                 />
                 <feColorMatrix
                   in="blur"
                   mode="matrix"
-                  values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                  values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 10 -2" // Adjusted values for a quicker transition
                   result="goo"
                 />
               </filter>
@@ -71,7 +71,7 @@ export default function HeroVFX() {
                 />
               </path>
 
-              {[...Array(15)].map((_, i) => (
+              {[...Array(5)].map((_, i) => (
                 <circle
                   key={i}
                   r={`${Math.random() * (10 - 5) + 5}`}

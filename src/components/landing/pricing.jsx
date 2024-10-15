@@ -1,39 +1,41 @@
 import React from "react"
 import { Button, Card } from "flowbite-react"
-
-const plans = [
-  {
-    title: "Free",
-    price: "$0",
-    features: [
-      "5 dream interpretations/month",
-      "Basic dream journaling",
-      "Ad-supported",
-    ],
-  },
-  {
-    title: "Dreamer",
-    price: "$9.99/mon",
-    features: [
-      "Unlimited interpretations",
-      "Advanced dream journaling",
-      "Ad-free experience",
-      "Priority support",
-    ],
-  },
-  {
-    title: "Visionary",
-    price: "$19.99/mon",
-    features: [
-      "Everything in Dreamer",
-      "Personalized insights",
-      "Dream pattern analysis",
-      "1-on-1 dream counseling session/month",
-    ],
-  },
-]
+import { useNavigate } from "react-router-dom"
 
 export default function Pricing() {
+  const navigate = useNavigate()
+  const plans = [
+    {
+      title: "Free",
+      price: "$0",
+      features: [
+        "5 dream interpretations/month",
+        "Basic dream journaling",
+        "Ad-supported",
+      ],
+    },
+    {
+      title: "Dreamer",
+      price: "$9.99/mon",
+      features: [
+        "Unlimited interpretations",
+        "Advanced dream journaling",
+        "Ad-free experience",
+        "Priority support",
+      ],
+    },
+    {
+      title: "Visionary",
+      price: "$19.99/mon",
+      features: [
+        "Everything in Dreamer",
+        "Personalized insights",
+        "Dream pattern analysis",
+        "1-on-1 dream counseling session/month",
+      ],
+    },
+  ]
+
   return (
     <section className="">
       <h3 className="text-3xl font-semibold text-center mb-10">
@@ -46,7 +48,7 @@ export default function Pricing() {
             className={`border-none ${
               index === 1
                 ? "bg-gradient-to-b from-purple-600 to-indigo-600"
-                : "bg-purple-800"
+                : "bg-purple-800 dark:bg-purple-800"
             }`}
           >
             <h5 className="text-2xl font-bold tracking-tight text-white mb-2">
@@ -58,7 +60,14 @@ export default function Pricing() {
                 <li key={featureIndex}>{feature}</li>
               ))}
             </ul>
-            <Button className="w-full">Choose Plan</Button>
+            <Button
+              className="w-full"
+              onClick={() => {
+                navigate("/signup")
+              }}
+            >
+              Choose Plan
+            </Button>
           </Card>
         ))}
       </div>

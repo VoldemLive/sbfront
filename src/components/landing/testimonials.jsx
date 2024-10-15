@@ -32,7 +32,7 @@ export default function Testimonials() {
         {testimonials.map((testimonial, index) => (
           <Card
             key={index}
-            className="bg-slate-100 dark:bg-slate-100 border-none"
+            className="bg-yellow-50 dark:bg-yellow-50 border-none"
           >
             <p className="mb-4">&quot;{testimonial.quote}&quot;</p>
             <Rating size="sm">

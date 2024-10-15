@@ -8,7 +8,7 @@ export default function Interpretations() {
         Our Interpretation Methods
       </h3>
       <div className="flex flex-col sm:flex-row gap-4">
-        <Card className="bg-purple-900 text-slate-200">
+        <Card className="bg-purple-900 dark:bg-purple-900 text-slate-200">
           <div>
             <h5 className="text-2xl text-center font-bold tracking-tight">
               Jungian Perspective
@@ -20,7 +20,7 @@ export default function Interpretations() {
             </p>
           </div>
         </Card>
-        <Card className="bg-purple-900 text-slate-200">
+        <Card className="bg-purple-900 dark:bg-purple-900 text-slate-200">
           <div>
             <h5 className="text-2xl text-center font-bold tracking-tight text-white">
               Freudian Perspective

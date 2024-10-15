@@ -74,7 +74,7 @@ export default function SigninWidget() {
           <div>
             <div className="mb-2 block">
               <Label
-                className="text-white"
+                className="text-white "
                 htmlFor="password"
                 value="Your password"
               />
