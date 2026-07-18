@@ -1,8 +1,47 @@
-# React + Vite
+# SomniVerse AI — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application for private dream journaling and AI-assisted interpretation.
 
-Currently, two official plugins are available:
+SomniVerse combines an authenticated journal, search and dashboard workflows, and structured AI interpretations presented through Jungian and Freudian perspectives.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- Account registration and sign-in
+- Protected application routes
+- Create, edit, search, and soft-delete dream entries
+- Dream details and interpretation views
+- Dashboard and journal navigation
+- Persisted client session
+- Responsive landing and application interfaces
+- Toast-based feedback and loading states
+
+## Stack
+
+- React 18 and Vite
+- React Router
+- Zustand
+- Axios
+- Tailwind CSS and Flowbite
+- SomniVerse Rails API
+
+The related backend lives in [VoldemLive/SomniVerceAIAPI](https://github.com/VoldemLive/SomniVerceAIAPI).
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+Create a local environment file with the API base URL expected by `src/API/api.js`. Do not commit tokens or production credentials.
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Status
+
+This repository is a product prototype and portfolio code sample. It is not presented as a medical or clinical interpretation service.
